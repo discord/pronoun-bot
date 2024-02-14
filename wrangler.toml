@@ -1,0 +1,7 @@
+name = "pronoun-bot"
+main = "src/index.ts"
+compatibility_date = "2023-04-29"
+
+kv_namespaces = [
+	{ binding = "pronoun", id = "", preview_id = "" }
+]

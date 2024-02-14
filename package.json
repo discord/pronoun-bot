@@ -1,0 +1,55 @@
+{
+  "name": "pronoun-bot",
+  "version": "1.0.1",
+  "description": "Discord pronoun bot",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "lint": "xo --prettier",
+    "fix": "xo --prettier --fix",
+    "test": "vitest",
+    "dev": "wrangler dev --port 3000",
+    "build": "tsc --noEmit",
+    "start": "wrangler dev --port 3000",
+    "register": "ts-node-esm ./src/register-commands.ts",
+    "publish": "wrangler publish"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/discord/discord.git"
+  },
+  "author": "Discord",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/discord/discord/issues"
+  },
+  "homepage": "https://github.com/discord/discord#readme",
+  "dependencies": {
+    "discord-interactions": "^3.4.0",
+    "emoji-regex": "^10.3.0",
+    "itty-router": "^4.0.27"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240208.0",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.17",
+    "dotenv": "^16.4.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.2",
+    "wrangler": "^3.28.2",
+    "xo": "0.57.0"
+  },
+  "xo": {
+    "rules": {
+      "@typescript-eslint/naming-convention": "off",
+      "no-await-in-loop": "off",
+      "new-cap": "off",
+      "no-bitwise": "off",
+      "@typescript-eslint/no-unsafe-enum-comparison": "off"
+    }
+  }
+}
