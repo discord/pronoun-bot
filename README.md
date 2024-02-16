@@ -29,3 +29,7 @@ After making changes be sure to test them with `npm run build` and `npm run fix`
 ## Required permissions
 
 Today the bot requires the `bot` scope and the `Administrator` bot permission. This should really be addressed at some point.
+
+## Credit
+
+A special **thank you** to [Leah Lundqvist](https://github.com/hex2f) who wrote and designed the original bot!
