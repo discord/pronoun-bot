@@ -80,6 +80,7 @@ async function execAsync(interaction: Interaction, env: Env) {
 			interaction,
 			message: permissionsError.data,
 		});
+		return;
 	}
 
 	try {
@@ -99,6 +100,7 @@ async function execAsync(interaction: Interaction, env: Env) {
 				flags: 64,
 			},
 		});
+		return;
 	}
 
 	const message = await rest.post<Message>(
