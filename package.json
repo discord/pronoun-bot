@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/discord/discord#readme",
   "dependencies": {
-    "discord-interactions": "^3.4.0",
+    "discord-interactions": "^4.0.0",
     "emoji-regex": "^10.3.0",
     "itty-router": "^4.0.27"
   },
