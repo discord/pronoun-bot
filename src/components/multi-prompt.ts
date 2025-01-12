@@ -1,7 +1,7 @@
-import {InteractionResponseType} from 'discord-interactions';
-import {type Component} from '../discord/discord-types.js';
-import {type Interaction} from '../discord/interaction.js';
-import {getMessageData} from '../component-builders.js';
+import { InteractionResponseType } from 'discord-interactions';
+import { getMessageData } from '../component-builders.js';
+import type { Component } from '../discord/discord-types.js';
+import type { Interaction } from '../discord/interaction.js';
 
 const component: Component = {
 	key: 'multi-prompt',

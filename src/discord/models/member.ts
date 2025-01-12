@@ -1,7 +1,7 @@
 import Bitfield from '../bitfield.js';
+import type { User } from '../discord-types.js';
 import type * as rest from '../rest.js';
-import {type User} from '../discord-types.js';
-import {type Permission} from './guild.js';
+import type { Permission } from './guild.js';
 
 export type MemberProperties = {
 	deaf: boolean;

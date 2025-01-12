@@ -1,6 +1,6 @@
-import {type MessageComponent} from 'discord-interactions';
-import {type Embed} from '../interaction.js';
-import {type User} from '../discord-types.js';
+import type { MessageComponent } from 'discord-interactions';
+import type { User } from '../discord-types.js';
+import type { Embed } from '../interaction.js';
 
 export enum MessageType {
 	DEFAULT = 0,

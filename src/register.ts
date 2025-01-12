@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 import process from 'node:process';
 import dotenv from 'dotenv';
+import config from './commands/config.js';
 import prompt from './commands/prompt.js';
 import pronounsCommand from './commands/pronouns.js';
-import config from './commands/config.js';
 
-dotenv.config({path: '.dev.vars'});
+dotenv.config({ path: '.dev.vars' });
 
 if (!process.env.DISCORD_TOKEN) {
 	throw new Error('The DISCORD_TOKEN environment variable is required.');

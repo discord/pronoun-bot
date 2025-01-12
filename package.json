@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "lint": "xo --prettier",
-    "fix": "xo --prettier --fix",
+    "fix": "biome check --write .",
+    "lint": "biome check .",
     "test": "vitest",
     "dev": "wrangler dev --port 3000",
     "build": "tsc --noEmit",
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/discord/discord.git"
+    "url": "git+https://github.com/discord/pronoun-bot.git"
   },
   "author": "Discord",
   "license": "MIT",
@@ -33,6 +33,7 @@
     "itty-router": "^4.0.27"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
     "@cloudflare/workers-types": "^4.20240208.0",
     "@types/express": "^5.0.0",
     "@types/node": "^22.0.0",
@@ -40,16 +41,6 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
     "vitest": "^1.2.2",
-    "wrangler": "^3.28.2",
-    "xo": "0.57.0"
-  },
-  "xo": {
-    "rules": {
-      "@typescript-eslint/naming-convention": "off",
-      "no-await-in-loop": "off",
-      "new-cap": "off",
-      "no-bitwise": "off",
-      "@typescript-eslint/no-unsafe-enum-comparison": "off"
-    }
+    "wrangler": "^3.28.2"
   }
 }

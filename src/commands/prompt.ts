@@ -1,17 +1,17 @@
-import {InteractionResponseType} from 'discord-interactions';
-import {getStatelessComponents} from '../component-builders.js';
-import {type Command} from '../discord/discord-types.js';
-import {type Interaction, updateWebhook} from '../discord/interaction.js';
-import {Permission, fetchGuild} from '../discord/models/guild.js';
-import {
-	type CreateMessageParameters,
-	type Message,
+import { InteractionResponseType } from 'discord-interactions';
+import { getStatelessComponents } from '../component-builders.js';
+import type { Command } from '../discord/discord-types.js';
+import { type Interaction, updateWebhook } from '../discord/interaction.js';
+import { Permission, fetchGuild } from '../discord/models/guild.js';
+import type {
+	CreateMessageParameters,
+	Message,
 } from '../discord/models/message.js';
-import {type Env} from '../env.js';
-import GuildConfigStore, {type GuildConfig} from '../guild-config-store.js';
+import type { Env } from '../env.js';
+import GuildConfigStore, { type GuildConfig } from '../guild-config-store.js';
 import PermissionPrompt from '../permission-prompt.js';
 import RoleStore from '../role-store.js';
-import {createPronounRole} from './pronouns.js';
+import { createPronounRole } from './pronouns.js';
 
 export function getMessageData(config: GuildConfig): CreateMessageParameters {
 	return {
@@ -109,7 +109,7 @@ async function execAsync(interaction: Interaction, env: Env) {
 	);
 	config.pickers = [
 		...config.pickers.slice(0, 5),
-		{c: interaction.channel_id, m: message.id},
+		{ c: interaction.channel_id, m: message.id },
 	];
 	await GuildConfigStore.save(interaction.guild_id, config, env);
 	await updateWebhook({

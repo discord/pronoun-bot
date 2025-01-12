@@ -1,4 +1,4 @@
-import {type Env} from '../env.js';
+import type { Env } from '../env.js';
 
 export class RESTClient {
 	constructor(public env: Env) {}
@@ -25,12 +25,12 @@ export class RESTClient {
 	}
 
 	async delete<T = void>(path: string): Promise<T> {
-		const result = await this.fetch<T>(path, {method: 'DELETE'});
+		const result = await this.fetch<T>(path, { method: 'DELETE' });
 		return result;
 	}
 
 	async put<T = void>(path: string): Promise<T> {
-		const result = this.fetch<T>(path, {method: 'PUT'});
+		const result = this.fetch<T>(path, { method: 'PUT' });
 		return result;
 	}
 

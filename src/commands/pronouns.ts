@@ -1,12 +1,13 @@
+import { type EmojiInfo, InteractionResponseType } from 'discord-interactions';
 import EmojiRegex from 'emoji-regex';
-import {InteractionResponseType, type EmojiInfo} from 'discord-interactions';
-import {type Command, CommandOptionType} from '../discord/discord-types.js';
+import { type Command, CommandOptionType } from '../discord/discord-types.js';
 import type {
 	Interaction,
 	InteractionOptions,
 	InteractionResponse,
 } from '../discord/interaction.js';
-import {type Guild, Permission, fetchGuild} from '../discord/models/guild.js';
+import { type Guild, Permission, fetchGuild } from '../discord/models/guild.js';
+import type { Env } from '../env.js';
 import GuildConfigStore, {
 	defaultConfig,
 	type GuildPronouns,
@@ -14,8 +15,7 @@ import GuildConfigStore, {
 } from '../guild-config-store.js';
 import PermissionPrompt from '../permission-prompt.js';
 import RoleStore from '../role-store.js';
-import {type Env} from '../env.js';
-import {updatePrompts} from './config.js';
+import { updatePrompts } from './config.js';
 
 const emojiregex = EmojiRegex();
 
@@ -33,7 +33,7 @@ function createPronounObject(
 		throw new Error('options unavailable');
 	}
 
-	const pronoun: PronounObject = {name};
+	const pronoun: PronounObject = { name };
 
 	if (
 		(interaction.options.has('add') &&
@@ -48,8 +48,8 @@ function createPronounObject(
 		).get<string>('emoji');
 		const matchedStandard = emojiOption.match(emojiregex);
 		if (matchedStandard !== null && matchedStandard.length > 0) {
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-			pronoun.emoji = {name: matchedStandard[0]} as any;
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+			pronoun.emoji = { name: matchedStandard[0] } as any;
 		} else {
 			const matchedDiscord = /<:(?<name>.+?):(?<id>\d+)>/.exec(emojiOption);
 			if (matchedDiscord?.groups?.name && matchedDiscord.groups?.id) {
@@ -71,7 +71,7 @@ export async function createPronounRole(
 ): Promise<string> {
 	const fetchedGuild =
 		guild ?? (await fetchGuild(interaction.guild_id, interaction.client));
-	const role = await fetchedGuild?.createRole({name}, interaction.client);
+	const role = await fetchedGuild?.createRole({ name }, interaction.client);
 	if (role === undefined) {
 		throw new Error('Failed to create a role for the pronoun.');
 	}
@@ -95,7 +95,7 @@ async function addPronoun(
 			type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
 			data: {
 				embeds: [
-					{title: ":x: Sorry, you can't add more than 15 pronoun options."},
+					{ title: ":x: Sorry, you can't add more than 15 pronoun options." },
 				],
 				flags: 64,
 			},
@@ -106,7 +106,7 @@ async function addPronoun(
 		return {
 			type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
 			data: {
-				embeds: [{title: `:x: \`${name}\` already exists.`}],
+				embeds: [{ title: `:x: \`${name}\` already exists.` }],
 				flags: 64,
 			},
 		};
@@ -130,7 +130,7 @@ async function addPronoun(
 	return {
 		type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
 		data: {
-			embeds: [{title: `:white_check_mark: \`${name}\` has been added.`}],
+			embeds: [{ title: `:white_check_mark: \`${name}\` has been added.` }],
 			flags: 64,
 		},
 	};
@@ -149,7 +149,7 @@ async function emojiPronoun(
 		return {
 			type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
 			data: {
-				embeds: [{title: `:x: \`${name}\` doesn't exist.`}],
+				embeds: [{ title: `:x: \`${name}\` doesn't exist.` }],
 				flags: 64,
 			},
 		};
@@ -182,7 +182,7 @@ async function emojiPronoun(
 		return {
 			type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
 			data: {
-				embeds: [{title: ":question: That doesn't seem like a valid emoji."}],
+				embeds: [{ title: ":question: That doesn't seem like a valid emoji." }],
 				flags: 64,
 			},
 		};
@@ -235,7 +235,7 @@ async function removePronoun(
 		return {
 			type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
 			data: {
-				embeds: [{title: `:x: \`${name}\` doesn't exist.`}],
+				embeds: [{ title: `:x: \`${name}\` doesn't exist.` }],
 				flags: 64,
 			},
 		};
@@ -246,14 +246,13 @@ async function removePronoun(
 			type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
 			data: {
 				embeds: [
-					{title: ":x: Sorry, you can't delete a default pronoun option."},
+					{ title: ":x: Sorry, you can't delete a default pronoun option." },
 				],
 				flags: 64,
 			},
 		};
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-dynamic-delete
 	delete config.pronouns[key];
 	await GuildConfigStore.save(interaction.guild_id, config, env);
 
@@ -281,7 +280,7 @@ async function removePronoun(
 	return {
 		type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
 		data: {
-			embeds: [{title: `:wastebasket: \`${name}\` has been removed.`}],
+			embeds: [{ title: `:wastebasket: \`${name}\` has been removed.` }],
 			flags: 64,
 		},
 	};
@@ -323,7 +322,7 @@ async function resetPronouns(
 		type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
 		data: {
 			embeds: [
-				{title: ':wastebasket: All non-default pronouns have been removed.'},
+				{ title: ':wastebasket: All non-default pronouns have been removed.' },
 			],
 			flags: 64,
 		},
@@ -421,7 +420,7 @@ const command: Command = {
 				type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
 				data: {
 					embeds: [
-						{title: ':x: The maximum length for `name` is 16 characters.'},
+						{ title: ':x: The maximum length for `name` is 16 characters.' },
 					],
 					flags: 64,
 				},
