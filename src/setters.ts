@@ -1,11 +1,11 @@
-import {InteractionResponseType} from 'discord-interactions';
-import {getComponents} from './component-builders.js';
+import { InteractionResponseType } from 'discord-interactions';
+import { getComponents } from './component-builders.js';
 import type {
 	Interaction,
 	InteractionResponse,
 	InteractionResponseData,
 } from './discord/interaction.js';
-import {type GuildConfig} from './guild-config-store.js';
+import type { GuildConfig } from './guild-config-store.js';
 import roleStore from './role-store.js';
 import * as UserRoleCache from './user-role-cache.js';
 
@@ -136,7 +136,7 @@ export async function setMultiRoles(
 	interaction: Interaction,
 	config: GuildConfig,
 ): Promise<InteractionResponseData> {
-	const {env} = interaction;
+	const { env } = interaction;
 	const pronounRoles = await roleStore.getAllKeyed(interaction.guild_id, env);
 	if (
 		await UserRoleCache.has(
@@ -208,7 +208,7 @@ export async function setMultiRoles(
 		}
 	}
 
-	return {components: await getComponents(interaction, config)};
+	return { components: await getComponents(interaction, config) };
 }
 
 export async function setRole(
@@ -224,7 +224,7 @@ export async function setRole(
 		await clearAllRoles(interaction);
 		return {
 			type: InteractionResponseType.UPDATE_MESSAGE,
-			data: {components: await getComponents(interaction, config)},
+			data: { components: await getComponents(interaction, config) },
 		};
 	}
 

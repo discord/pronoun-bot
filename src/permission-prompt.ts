@@ -1,6 +1,9 @@
-import {InteractionResponseType} from 'discord-interactions';
-import type {Interaction, InteractionResponse} from './discord/interaction.js';
-import {type Permission, PermissionNames} from './discord/models/guild.js';
+import { InteractionResponseType } from 'discord-interactions';
+import type {
+	Interaction,
+	InteractionResponse,
+} from './discord/interaction.js';
+import { type Permission, PermissionNames } from './discord/models/guild.js';
 
 export default async function permissionPrompt(
 	interaction: Interaction,

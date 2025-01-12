@@ -1,19 +1,19 @@
-import {InteractionResponseType} from 'discord-interactions';
-import {type Command, CommandOptionType} from '../discord/discord-types.js';
-import {
-	type Interaction,
-	type InteractionOptions,
-	type InteractionResponse,
+import { InteractionResponseType } from 'discord-interactions';
+import { type Command, CommandOptionType } from '../discord/discord-types.js';
+import type {
+	Interaction,
+	InteractionOptions,
+	InteractionResponse,
 } from '../discord/interaction.js';
-import {Permission} from '../discord/models/guild.js';
+import { Permission } from '../discord/models/guild.js';
+import { FetchError, type RESTClient } from '../discord/rest.js';
 import GuildConfigStore, {
 	defaultConfig,
 	type GuildConfigPicker,
 	type GuildConfig,
 } from '../guild-config-store.js';
 import PermissionPrompt from '../permission-prompt.js';
-import {FetchError, type RESTClient} from '../discord/rest.js';
-import {getMessageData, validateRoles} from './prompt.js';
+import { getMessageData, validateRoles } from './prompt.js';
 
 export async function updatePrompts(
 	config: GuildConfig,
@@ -92,7 +92,7 @@ async function view(
 		? 'Only the owner can change the configuration.'
 		: 'Anyone with the appropriate role permissions can change the configuration.';
 	description += '\n\n**Prompt message**\n```';
-	description += config.promptMessage + '```';
+	description += `${config.promptMessage}\`\`\``;
 	return {
 		type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
 		data: {
@@ -205,10 +205,10 @@ const command: Command = {
 					type: CommandOptionType.String,
 					required: true,
 					choices: [
-						{name: 'all', value: 'all'},
-						{name: 'use-roles', value: 'use-roles'},
-						{name: 'owner-only', value: 'owner-only'},
-						{name: 'prompt-message', value: 'prompt-message'},
+						{ name: 'all', value: 'all' },
+						{ name: 'use-roles', value: 'use-roles' },
+						{ name: 'owner-only', value: 'owner-only' },
+						{ name: 'prompt-message', value: 'prompt-message' },
 					],
 				},
 			],
@@ -220,7 +220,7 @@ const command: Command = {
 		}
 
 		const config = await GuildConfigStore.get(interaction.guild_id, env);
-		const action = interaction.options.subCommandName!;
+		const action = interaction.options.subCommandName;
 
 		const permissionsError = await PermissionPrompt(interaction, [
 			Permission.MANAGE_GUILD,

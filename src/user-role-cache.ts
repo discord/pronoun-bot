@@ -1,5 +1,5 @@
 import type Member from './discord/models/member.js';
-import {type Env} from './env.js';
+import type { Env } from './env.js';
 
 export async function get(
 	guild: string,
@@ -8,7 +8,7 @@ export async function get(
 ): Promise<Set<string> | undefined> {
 	const data = await env.pronoun.get(`user-roles:${guild}:${uid}`);
 	if (data !== null && data !== '{}') {
-		return new Set(JSON.parse(data)); // eslint-disable-line @typescript-eslint/no-unsafe-argument
+		return new Set(JSON.parse(data));
 	}
 
 	return undefined;

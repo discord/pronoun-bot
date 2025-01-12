@@ -1,11 +1,8 @@
-import {
-	type InteractionResponseType,
-	type ActionRow,
-} from 'discord-interactions';
-import {type Env} from '../env.js';
-import {CommandOptionType, type User} from './discord-types.js';
-import {type RESTClient} from './rest.js';
+import type { ActionRow, InteractionResponseType } from 'discord-interactions';
+import type { Env } from '../env.js';
+import { CommandOptionType, type User } from './discord-types.js';
 import type Member from './models/member.js';
+import type { RESTClient } from './rest.js';
 
 export type InteractionData = {
 	id: string;
@@ -237,7 +234,7 @@ export class InteractionOptions {
 			return option as T;
 		}
 
-		return option!.value as T;
+		return option?.value as T;
 	}
 }
 

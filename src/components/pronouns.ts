@@ -1,7 +1,7 @@
-import {InteractionResponseType} from 'discord-interactions';
-import {type Component} from '../discord/discord-types.js';
+import { InteractionResponseType } from 'discord-interactions';
+import type { Component } from '../discord/discord-types.js';
 import GuildConfigStore from '../guild-config-store.js';
-import {setNick, setRole} from '../setters.js';
+import { setNick, setRole } from '../setters.js';
 
 const component: Component = {
 	key: 'pronouns',

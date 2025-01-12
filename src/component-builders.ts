@@ -1,7 +1,7 @@
 import {
 	type ActionRow,
-	ButtonStyleTypes,
 	type Button,
+	ButtonStyleTypes,
 	type EmojiInfo,
 	MessageComponentTypes,
 } from 'discord-interactions';
@@ -9,7 +9,7 @@ import type {
 	Interaction,
 	InteractionResponseData,
 } from './discord/interaction.js';
-import GuildConfigStore, {type GuildConfig} from './guild-config-store.js';
+import GuildConfigStore, { type GuildConfig } from './guild-config-store.js';
 import RoleStore from './role-store.js';
 import * as UserRoleCache from './user-role-cache.js';
 
@@ -52,7 +52,7 @@ export async function getComponents(
 				custom_id: 'pronouns:$clear:multi',
 				label: 'Clear',
 				style: ButtonStyleTypes.DANGER,
-				emoji: {name: '🗑️'} as unknown as Pick<
+				emoji: { name: '🗑️' } as unknown as Pick<
 					EmojiInfo,
 					'id' | 'name' | 'animated'
 				>,

@@ -1,6 +1,6 @@
-import {type ExecutionContext} from '@cloudflare/workers-types';
-import {type Env} from '../env.js';
-import type {Interaction, InteractionResponse} from './interaction.js';
+import type { ExecutionContext } from '@cloudflare/workers-types';
+import type { Env } from '../env.js';
+import type { Interaction, InteractionResponse } from './interaction.js';
 
 export enum CommandOptionType {
 	SubCommand = 1,

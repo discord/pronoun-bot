@@ -1,5 +1,5 @@
-import {type EmojiInfo} from 'discord-interactions';
-import {type Env} from './env.js';
+import type { EmojiInfo } from 'discord-interactions';
+import type { Env } from './env.js';
 
 export type GuildPronouns = Record<
 	string,
@@ -29,11 +29,11 @@ export const defaultConfig: GuildConfig = {
 	promptMessage:
 		"Use the buttons below to select what pronouns you'd like us to display for you.",
 	pronouns: {
-		any: {name: 'Any', hideButton: true},
-		ask: {name: 'Ask Me', hideButton: true},
-		they_them: {name: 'They/Them'},
-		she_her: {name: 'She/Her'},
-		he_him: {name: 'He/Him'},
+		any: { name: 'Any', hideButton: true },
+		ask: { name: 'Ask Me', hideButton: true },
+		they_them: { name: 'They/Them' },
+		she_her: { name: 'She/Her' },
+		he_him: { name: 'He/Him' },
 	},
 	pickers: [],
 };

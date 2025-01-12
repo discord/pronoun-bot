@@ -1,24 +1,24 @@
+import type { ExecutionContext } from '@cloudflare/workers-types';
 import {
-	verifyKey,
-	InteractionType,
 	InteractionResponseType,
+	InteractionType,
+	verifyKey,
 } from 'discord-interactions';
-import {Router} from 'itty-router';
-import {type ExecutionContext} from '@cloudflare/workers-types';
-import pronouns from './components/pronouns.js';
+import { Router } from 'itty-router';
+import config from './commands/config.js';
+import prompt from './commands/prompt.js';
+import pronounsCommand from './commands/pronouns.js';
+import { JsonResponse } from './common.js';
 import multiPrompt from './components/multi-prompt.js';
+import pronouns from './components/pronouns.js';
 import {
 	type Interaction,
 	InteractionOptions,
 	type InteractionPayload,
 } from './discord/interaction.js';
 import Member from './discord/models/member.js';
-import {type Env} from './env.js';
-import prompt from './commands/prompt.js';
-import pronounsCommand from './commands/pronouns.js';
-import config from './commands/config.js';
-import {JsonResponse} from './common.js';
-import {RESTClient} from './discord/rest.js';
+import { RESTClient } from './discord/rest.js';
+import type { Env } from './env.js';
 
 const components = new Map([
 	[pronouns.key, pronouns],
@@ -42,9 +42,9 @@ router.get('/', () => new Response('<3'));
 router.post('/interaction', async (r, env: Env, context: ExecutionContext) => {
 	try {
 		const request = r as unknown as Request;
-		const {isValid, interaction} = await verifyDiscordRequest(request, env);
+		const { isValid, interaction } = await verifyDiscordRequest(request, env);
 		if (!isValid || !interaction) {
-			return new Response('Bad request signature.', {status: 401});
+			return new Response('Bad request signature.', { status: 401 });
 		}
 
 		const rest = new RESTClient(env);
@@ -70,35 +70,37 @@ router.post('/interaction', async (r, env: Env, context: ExecutionContext) => {
 
 		switch (interaction.type) {
 			case InteractionType.PING: {
-				return new JsonResponse({type: InteractionResponseType.PONG});
+				return new JsonResponse({ type: InteractionResponseType.PONG });
 			}
 
 			case InteractionType.APPLICATION_COMMAND: {
 				if (env.DISCORD_CLIENT_ID !== interaction.application_id) {
 					return new JsonResponse(
-						{error: 'Application not found'},
-						{status: 400},
+						{ error: 'Application not found' },
+						{ status: 400 },
 					);
 				}
 
 				const command = commands.get(interaction.data.name);
 				if (command?.onInteraction !== undefined) {
-					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 					const parsedInteraction: Interaction = {
 						client: rest,
 						env,
+						// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 						...(interaction as any),
 					};
 
 					parsedInteraction.member &&= new Member(
 						interaction.guild_id,
-						interaction.member as any, // eslint-disable-line @typescript-eslint/no-unsafe-argument
+						// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+						interaction.member as any,
 						rest,
 					);
 
 					if (interaction.data.options) {
 						parsedInteraction.options = new InteractionOptions(
-							interaction.data.options as any, // eslint-disable-line @typescript-eslint/no-unsafe-argument
+							// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+							interaction.data.options as any,
 						);
 					}
 
@@ -123,21 +125,23 @@ router.post('/interaction', async (r, env: Env, context: ExecutionContext) => {
 				const key = interaction.data.custom_id.split(':')[0];
 				const component = components.get(key);
 				if (component?.onInteraction !== undefined) {
-					// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 					const parsedInteraction: Interaction = {
 						client: rest,
 						env,
+						// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 						...(interaction as any),
 					};
 					parsedInteraction.member &&= new Member(
 						interaction.guild_id,
-						interaction.member as any, // eslint-disable-line @typescript-eslint/no-unsafe-argument
+						// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+						interaction.member as any,
 						rest,
 					);
 
 					if (interaction.data.options) {
 						parsedInteraction.options = new InteractionOptions(
-							interaction.data.options as any, // eslint-disable-line @typescript-eslint/no-unsafe-argument
+							// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+							interaction.data.options as any,
 						);
 					}
 
@@ -146,23 +150,26 @@ router.post('/interaction', async (r, env: Env, context: ExecutionContext) => {
 				}
 
 				return new JsonResponse(
-					{error: 'Interaction not found'},
-					{status: 400},
+					{ error: 'Interaction not found' },
+					{ status: 400 },
 				);
 			}
 
 			default: {
 				return new JsonResponse(
-					{error: 'Interaction not found'},
-					{status: 400},
+					{ error: 'Interaction not found' },
+					{ status: 400 },
 				);
 			}
 		}
 
-		return new JsonResponse({error: 'Interaction not found'}, {status: 400});
+		return new JsonResponse(
+			{ error: 'Interaction not found' },
+			{ status: 400 },
+		);
 	} catch (error: unknown) {
 		console.error(error);
-		return new Response('Error handling interaction.', {status: 500});
+		return new Response('Error handling interaction.', { status: 500 });
 	}
 });
 
@@ -206,13 +213,13 @@ async function checkRateLimits(interaction: InteractionPayload, env: Env) {
 }
 
 router.get('*', () => {
-	return new Response('Not found', {status: 404});
+	return new Response('Not found', { status: 404 });
 });
 
 async function verifyDiscordRequest(
 	request: Request,
 	env: Env,
-): Promise<{interaction?: InteractionPayload; isValid: boolean}> {
+): Promise<{ interaction?: InteractionPayload; isValid: boolean }> {
 	const signature = request.headers.get('x-signature-ed25519');
 	const timestamp = request.headers.get('x-signature-timestamp');
 	const body = await request.text();
@@ -221,10 +228,10 @@ async function verifyDiscordRequest(
 		timestamp &&
 		(await verifyKey(body, signature, timestamp, env.DISCORD_PUBLIC_KEY));
 	if (!isValidRequest) {
-		return {isValid: false};
+		return { isValid: false };
 	}
 
-	return {interaction: JSON.parse(body) as InteractionPayload, isValid: true};
+	return { interaction: JSON.parse(body) as InteractionPayload, isValid: true };
 }
 
 const main = {
