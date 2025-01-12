@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       discord-interactions:
-        specifier: ^3.4.0
-        version: 3.4.0
+        specifier: ^4.1.0
+        version: 4.1.0
       emoji-regex:
         specifier: ^10.3.0
         version: 10.3.0
@@ -1040,9 +1040,9 @@ packages:
     resolution: {integrity: sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==}
     engines: {node: '>=8'}
 
-  discord-interactions@3.4.0:
-    resolution: {integrity: sha512-DG0Jxdd/FcK8liAPhIP4u5YHpnz50JWn9DK4OavxsLD49/WGimXtP3EdOY439MaWyCgQfsfFkA1GsTEyu63RzA==}
-    engines: {node: '>=12'}
+  discord-interactions@4.1.0:
+    resolution: {integrity: sha512-7DyXvsnp9FxjMPD+cPHG3DbttveVgOcWOBtWqyjSQ2bsfkTVpJF2l4c8+XujXaC45NXpRV67Da3go5O2DI0/hw==}
+    engines: {node: '>=18.4.0'}
 
   doctrine@2.1.0:
     resolution: {integrity: sha512-35mSku4ZXK0vfCuHEDAwt55dg2jNajHZ1odvF+8SSr82EsZY4QmXfuWso8oEd8zRhVObSN18aM0CjSdoBX7zIw==}
@@ -2469,9 +2469,6 @@ packages:
   tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
 
-  tweetnacl@1.0.3:
-    resolution: {integrity: sha512-6rt+RN7aOi1nGMyC4Xa5DdYiukl2UWCbcJft7YhxReBGQD7OAM8Pbxw6YMo4r2diNEA8FEmu32YOn9rhaiE5yw==}
-
   type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
     engines: {node: '>= 0.8.0'}
@@ -3627,9 +3624,7 @@ snapshots:
     dependencies:
       path-type: 4.0.0
 
-  discord-interactions@3.4.0:
-    dependencies:
-      tweetnacl: 1.0.3
+  discord-interactions@4.1.0: {}
 
   doctrine@2.1.0:
     dependencies:
@@ -3837,7 +3832,7 @@ snapshots:
       array.prototype.find: 2.2.2
       debug: 3.2.7
       enhanced-resolve: 0.9.1
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@6.21.0(eslint@8.56.0)(typescript@5.3.3))(eslint-import-resolver-webpack@0.13.8)(eslint@8.56.0)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@6.21.0(eslint@8.56.0)(typescript@5.3.3))(eslint-import-resolver-webpack@0.13.8(eslint-plugin-import@2.29.1(@typescript-eslint/parser@6.21.0(eslint@8.56.0)(typescript@5.3.3))(eslint@8.56.0))(webpack@5.90.1(esbuild@0.17.19)))(eslint@8.56.0)
       find-root: 1.1.0
       hasown: 2.0.1
       interpret: 1.4.0
@@ -3886,7 +3881,7 @@ snapshots:
       eslint: 8.56.0
       ignore: 5.3.1
 
-  eslint-plugin-import@2.29.1(@typescript-eslint/parser@6.21.0(eslint@8.56.0)(typescript@5.3.3))(eslint-import-resolver-webpack@0.13.8)(eslint@8.56.0):
+  eslint-plugin-import@2.29.1(@typescript-eslint/parser@6.21.0(eslint@8.56.0)(typescript@5.3.3))(eslint-import-resolver-webpack@0.13.8(eslint-plugin-import@2.29.1(@typescript-eslint/parser@6.21.0(eslint@8.56.0)(typescript@5.3.3))(eslint@8.56.0))(webpack@5.90.1(esbuild@0.17.19)))(eslint@8.56.0):
     dependencies:
       array-includes: 3.1.7
       array.prototype.findlastindex: 1.2.4
@@ -5187,8 +5182,6 @@ snapshots:
 
   tslib@2.6.2: {}
 
-  tweetnacl@1.0.3: {}
-
   type-check@0.4.0:
     dependencies:
       prelude-ls: 1.2.1
@@ -5448,7 +5441,7 @@ snapshots:
       eslint-import-resolver-webpack: 0.13.8(eslint-plugin-import@2.29.1(@typescript-eslint/parser@6.21.0(eslint@8.56.0)(typescript@5.3.3))(eslint@8.56.0))(webpack@5.90.1(esbuild@0.17.19))
       eslint-plugin-ava: 14.0.0(eslint@8.56.0)
       eslint-plugin-eslint-comments: 3.2.0(eslint@8.56.0)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@6.21.0(eslint@8.56.0)(typescript@5.3.3))(eslint-import-resolver-webpack@0.13.8)(eslint@8.56.0)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@6.21.0(eslint@8.56.0)(typescript@5.3.3))(eslint-import-resolver-webpack@0.13.8(eslint-plugin-import@2.29.1(@typescript-eslint/parser@6.21.0(eslint@8.56.0)(typescript@5.3.3))(eslint@8.56.0))(webpack@5.90.1(esbuild@0.17.19)))(eslint@8.56.0)
       eslint-plugin-n: 16.6.2(eslint@8.56.0)
       eslint-plugin-no-use-extend-native: 0.5.0
       eslint-plugin-prettier: 5.1.3(@types/eslint@8.56.2)(eslint-config-prettier@9.1.0(eslint@8.56.0))(eslint@8.56.0)(prettier@3.2.5)
