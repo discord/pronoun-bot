@@ -40,7 +40,7 @@
     "dotenv": "^16.4.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
-    "vitest": "^1.2.2",
+    "vitest": "^2.0.0",
     "wrangler": "^3.28.2"
   }
 }
