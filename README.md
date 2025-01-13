@@ -1,6 +1,6 @@
 # pronoun-bot
 
-I'm the official Pronoun Picker bot for Discord! You can read more about me here: https://support.discord.com/hc/en-us/articles/1500012528941-Pronoun-Picker-Bot-FAQ.
+I'm the official Pronoun Picker bot for Discord! You can read more about me here: <https://support.discord.com/hc/en-us/articles/1500012528941-Pronoun-Picker-Bot-FAQ>.
 
 ## Commands
 
@@ -21,8 +21,8 @@ This bot uses Cloudflare Workers and KV Store.
 - Create your own version of the application in discord.dev
 - Copy `.example.dev.vars` to `.dev.vars`, and add your token, public key, and client id.
 - Make sure you're using Node.js 20 or higher.
-- Run `pnpm install`
-- Run `pnpm run dev`
+- Run `npm install`
+- Run `npm run dev`
 
 After making changes be sure to test them with `npm run build` and `npm run fix`.
 

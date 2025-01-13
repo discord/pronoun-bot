@@ -1,0 +1,31 @@
+name: pronoun-bot-deploy
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    name: pronoun-bot-deploy
+    steps:
+      - uses: actions/checkout@v4
+      - id: auth
+        uses: 'google-github-actions/auth@v2'
+        with:
+          workload_identity_provider: 'projects/626179414504/locations/global/workloadIdentityPools/ga-pronoun-bot/providers/ga-pronoun-bot'
+          service_account: 'ga-pronoun-bot@discord-app-city-prd.iam.gserviceaccount.com'
+      - id: 'secrets'
+        uses: 'google-github-actions/get-secretmanager-secrets@v2'
+        with:
+          secrets: |-
+            token:discord-app-city-prd/pronoun-bot-deploy-token
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npm run publish
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ steps.secrets.outputs.token }}
