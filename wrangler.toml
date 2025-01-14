@@ -1,6 +1,7 @@
 name = "pronoun-bot"
 main = "src/index.ts"
 compatibility_date = "2023-04-29"
+account_id = "586d10f664695804035447762473cdd3"
 
 kv_namespaces = [
 	{ binding = "pronoun", id = "2a39fb5d2057403295dc7af6b67bc1d8", preview_id = "00cde9f4cdde49e49e745d8851f98c49" }
