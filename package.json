@@ -12,7 +12,7 @@
     "build": "tsc --noEmit",
     "start": "wrangler dev --port 3000",
     "register": "ts-node-esm ./src/register-commands.ts",
-    "publish": "wrangler publish"
+    "publish": "wrangler deploy"
   },
   "engines": {
     "node": ">=20"
