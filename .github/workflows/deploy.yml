@@ -22,7 +22,7 @@ jobs:
         with:
           secrets: |-
             token:discord-app-city-prd/pronoun-bot-deploy-token
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 20
       - run: npm install
