@@ -37,7 +37,7 @@
     "@cloudflare/workers-types": "^4.20240208.0",
     "@types/express": "^5.0.0",
     "@types/node": "^22.0.0",
-    "dotenv": "^16.4.4",
+    "dotenv": "^17.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
     "vitest": "^3.0.0",
