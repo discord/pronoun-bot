@@ -33,7 +33,7 @@
     "itty-router": "^4.0.27"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
+    "@biomejs/biome": "^2.0.0",
     "@cloudflare/workers-types": "^4.20240208.0",
     "@types/express": "^5.0.0",
     "@types/node": "^22.0.0",
