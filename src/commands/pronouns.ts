@@ -6,12 +6,12 @@ import type {
 	InteractionOptions,
 	InteractionResponse,
 } from '../discord/interaction.js';
-import { type Guild, Permission, fetchGuild } from '../discord/models/guild.js';
+import { fetchGuild, type Guild, Permission } from '../discord/models/guild.js';
 import type { Env } from '../env.js';
 import GuildConfigStore, {
 	defaultConfig,
-	type GuildPronouns,
 	type GuildConfig,
+	type GuildPronouns,
 } from '../guild-config-store.js';
 import PermissionPrompt from '../permission-prompt.js';
 import RoleStore from '../role-store.js';
@@ -48,7 +48,7 @@ function createPronounObject(
 		).get<string>('emoji');
 		const matchedStandard = emojiOption.match(emojiregex);
 		if (matchedStandard !== null && matchedStandard.length > 0) {
-			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+			// biome-ignore lint/suspicious/noExplicitAny: Discord emoji requires any type
 			pronoun.emoji = { name: matchedStandard[0] } as any;
 		} else {
 			const matchedDiscord = /<:(?<name>.+?):(?<id>\d+)>/.exec(emojiOption);
@@ -260,7 +260,7 @@ async function removePronoun(
 		try {
 			const roleId = await RoleStore.get(interaction.guild_id, key, env);
 			if (roleId) {
-				const guild = await fetchGuild(
+				const _guild = await fetchGuild(
 					interaction.guild_id,
 					interaction.client,
 				);
@@ -292,7 +292,7 @@ async function resetPronouns(
 	env: Env,
 ): Promise<InteractionResponse> {
 	if (config.useRoles) {
-		const guild = await fetchGuild(interaction.guild_id, interaction.client);
+		const _guild = await fetchGuild(interaction.guild_id, interaction.client);
 		for (const key of Object.keys(config.pronouns)) {
 			if (defaultConfig.pronouns[key] !== undefined) {
 				continue;

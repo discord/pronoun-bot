@@ -2,7 +2,7 @@ import { InteractionResponseType } from 'discord-interactions';
 import { getStatelessComponents } from '../component-builders.js';
 import type { Command } from '../discord/discord-types.js';
 import { type Interaction, updateWebhook } from '../discord/interaction.js';
-import { Permission, fetchGuild } from '../discord/models/guild.js';
+import { fetchGuild, Permission } from '../discord/models/guild.js';
 import type {
 	CreateMessageParameters,
 	Message,

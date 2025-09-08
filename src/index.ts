@@ -86,20 +86,20 @@ router.post('/interaction', async (r, env: Env, context: ExecutionContext) => {
 					const parsedInteraction: Interaction = {
 						client: rest,
 						env,
-						// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+						// biome-ignore lint/suspicious/noExplicitAny: Discord interaction type casting
 						...(interaction as any),
 					};
 
 					parsedInteraction.member &&= new Member(
 						interaction.guild_id,
-						// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+						// biome-ignore lint/suspicious/noExplicitAny: Discord interaction type casting
 						interaction.member as any,
 						rest,
 					);
 
 					if (interaction.data.options) {
 						parsedInteraction.options = new InteractionOptions(
-							// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+							// biome-ignore lint/suspicious/noExplicitAny: Discord options type casting
 							interaction.data.options as any,
 						);
 					}
@@ -128,19 +128,19 @@ router.post('/interaction', async (r, env: Env, context: ExecutionContext) => {
 					const parsedInteraction: Interaction = {
 						client: rest,
 						env,
-						// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+						// biome-ignore lint/suspicious/noExplicitAny: Discord interaction type casting
 						...(interaction as any),
 					};
 					parsedInteraction.member &&= new Member(
 						interaction.guild_id,
-						// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+						// biome-ignore lint/suspicious/noExplicitAny: Discord interaction type casting
 						interaction.member as any,
 						rest,
 					);
 
 					if (interaction.data.options) {
 						parsedInteraction.options = new InteractionOptions(
-							// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+							// biome-ignore lint/suspicious/noExplicitAny: Discord options type casting
 							interaction.data.options as any,
 						);
 					}
