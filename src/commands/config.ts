@@ -9,8 +9,8 @@ import { Permission } from '../discord/models/guild.js';
 import { FetchError, type RESTClient } from '../discord/rest.js';
 import GuildConfigStore, {
 	defaultConfig,
-	type GuildConfigPicker,
 	type GuildConfig,
+	type GuildConfigPicker,
 } from '../guild-config-store.js';
 import PermissionPrompt from '../permission-prompt.js';
 import { getMessageData, validateRoles } from './prompt.js';
