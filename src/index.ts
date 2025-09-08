@@ -240,7 +240,7 @@ const main = {
 		env: Env,
 		context: ExecutionContext,
 	): Promise<unknown> {
-		return router.handle(request, env, context);
+		return router.fetch(request, env, context);
 	},
 };
 
