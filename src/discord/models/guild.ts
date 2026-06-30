@@ -188,7 +188,8 @@ export class Guild {
 		return rest.post(`/guilds/${this.id}/roles`, {
 			...role,
 			permissions:
-				role.permissions && new Bitfield<Permission>(0n).apply(role.permissions),
+				role.permissions &&
+				new Bitfield<Permission>(0n).apply(role.permissions),
 		});
 	}
 }
