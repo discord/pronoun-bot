@@ -171,14 +171,14 @@ export class Guild {
 	constructor(guild: GuildData) {
 		Object.assign(this, guild);
 		this.system_channel_flags = new Bitfield<SystemChannelFlag>(
-			Number(guild.system_channel_flags),
+			BigInt(guild.system_channel_flags),
 		);
 	}
 
 	async createRole(
 		role: {
 			name?: string;
-			premissions?: Permission[];
+			permissions?: Permission[];
 			color?: number;
 			hoist?: boolean;
 			mentionable?: boolean;
@@ -188,7 +188,7 @@ export class Guild {
 		return rest.post(`/guilds/${this.id}/roles`, {
 			...role,
 			permissions:
-				role.premissions && new Bitfield<Permission>(0).apply(role.premissions),
+				role.permissions && new Bitfield<Permission>(0n).apply(role.permissions),
 		});
 	}
 }
