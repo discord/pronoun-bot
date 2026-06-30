@@ -1,10 +1,9 @@
 export default class Bitfield<FlagType> {
-	constructor(public raw: number) {}
+	constructor(public raw: bigint) {}
 
 	has(bit: FlagType): boolean {
-		return (
-			(this.raw & (bit as unknown as number)) === (bit as unknown as number)
-		);
+		const b = BigInt(bit as number);
+		return (this.raw & b) === b;
 	}
 
 	hasAll(bits: FlagType[]): boolean {
@@ -13,8 +12,8 @@ export default class Bitfield<FlagType> {
 
 	apply(bits: FlagType[]): this {
 		this.raw |= bits.reduce((a, b) => {
-			return a | (b as unknown as number);
-		}, 0);
+			return a | BigInt(b as number);
+		}, 0n);
 		return this;
 	}
 }

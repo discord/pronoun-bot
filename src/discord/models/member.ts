@@ -38,7 +38,7 @@ export default class Member {
 		this.is_pending = properties.is_pending;
 		this.joined_at = properties.joined_at;
 		this.nick = properties.nick;
-		this.permissions = new Bitfield<Permission>(Number(properties.permissions));
+		this.permissions = new Bitfield<Permission>(BigInt(properties.permissions));
 		this.permium_since = properties.premium_since;
 		this.roles = new Set(properties.roles);
 		this.user = properties.user;
