@@ -39,7 +39,7 @@
     "@types/node": "^24.0.0",
     "dotenv": "^17.0.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3",
+    "typescript": "^7.0.0",
     "vitest": "^4.0.0",
     "wrangler": "^4.0.0"
   }
