@@ -29,8 +29,6 @@ const commands = new Map(
 	[prompt, pronounsCommand, config].map((command) => [command.name, command]),
 );
 
-const startedAt = Date.now();
-
 type Ratelimit = {
 	calls: number;
 	timestamp: number;
@@ -185,7 +183,7 @@ async function checkRateLimits(interaction: InteractionPayload, env: Env) {
 			rl = 0;
 		}
 
-		if (rl > 8) {
+		if (ratelimit && rl > 8) {
 			return new JsonResponse({
 				type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
 				data: {
@@ -193,7 +191,7 @@ async function checkRateLimits(interaction: InteractionPayload, env: Env) {
 						{
 							title: "Woah! You're going too fast, please slow down!",
 							footer: {
-								text: `Try again in ${(15 - (((Date.now() - startedAt) / 1000) % 15)).toFixed(0)} seconds`,
+								text: `Try again in ${(15 - (Date.now() - ratelimit.timestamp) / 1000).toFixed(0)} seconds`,
 							},
 						},
 					],
